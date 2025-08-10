@@ -1,24 +1,29 @@
-// app/(site)/page.tsx
 import Link from "next/link";
 import GradientHero from "@/components/GradientHero";
 import NewsletterSection from "@/components/NewsletterSection";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
-  return <h2 className="text-[28px] md:text-[32px] font-extrabold tracking-tight text-slate-900">{children}</h2>;
+  return (
+    <h2 className="text-[28px] md:text-[32px] font-extrabold tracking-tight text-slate-900">
+      {children}
+    </h2>
+  );
 }
 function Rule() { return <div className="h-px bg-slate-200" />; }
 function Tag({ text }: { text: string }) {
-  return <span className="inline-block text-xs font-medium px-2 py-1 rounded-full bg-blue-50 text-[#3498DB]">{text}</span>;
+  return (
+    <span className="inline-block text-xs font-medium px-2 py-1 rounded-full bg-blue-50 text-[#3498DB]">
+      {text}
+    </span>
+  );
 }
 
 export default function HomePage() {
-  // Featured: 1 Research + 2 Blog posts
   const featured = [
     { kind: "Research", title: "Policy pathways for equitable AI in schools", href: "/research" },
     { kind: "Blog", title: "Women’s Day March changed the game", href: "/blog" },
     { kind: "Blog", title: "France prepares for Election Day", href: "/blog" },
   ];
-
   const research = Array.from({ length: 6 }).map((_, i) => ({
     title: `Paper Title #${i + 1}`, href: "/research"
   }));
@@ -28,14 +33,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Top ribbon */}
-      <div className="bg-[#3498DB] text-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-12 font-semibold flex items-center justify-center">
-          Feasible solutions by the youth
-        </div>
-      </div>
-
-      {/* INITIUM + divider + tagline (mirrors Wix) */}
+      {/* INITIUM + divider + tagline (no top ribbon anymore) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10">
         <div className="grid md:grid-cols-12 gap-8 items-end">
           <div className="md:col-span-7">
@@ -44,7 +42,7 @@ export default function HomePage() {
             </h1>
           </div>
 
-          {/* Vertical divider – same visual proportion as Wix; shows on md+ */}
+          {/* Vertical divider (Wix proportion) */}
           <div className="hidden md:flex md:col-span-1 items-end">
             <div
               className="w-[2px] bg-[#3498DB]"
@@ -62,7 +60,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Gradient banner (replaces Wix image, full width, square corners) */}
+        {/* Space between INITIUM and the gradient banner (per your request) */}
+        <div className="mt-6" />
+
+        {/* Gradient hero WITH the ribbon inside */}
         <GradientHero />
       </section>
 
@@ -83,7 +84,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Research Papers (before Blog, per your order) */}
+      {/* Research Papers */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
         <div className="flex items-end justify-between">
           <SectionHeading>Research Papers</SectionHeading>
