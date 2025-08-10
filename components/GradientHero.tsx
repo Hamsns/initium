@@ -15,7 +15,7 @@ export default function GradientHero() {
             className="bg-[#3498DB] text-white text-center font-semibold shadow-sm"
             style={{ height: 72, lineHeight: "72px", width: "86%" }}
           >
-            Feasible solutions by the youth
+            Feasible solutions by the youth of today
           </div>
         </div>
       </div>
