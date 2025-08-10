@@ -1,5 +1,5 @@
 import Link from "next/link";
-import NewsletterSection from "@/components/NewsletterSection";
+import NewsletterCompact from "@/components/NewsletterCompact";
 
 export default function Footer() {
   return (
@@ -8,18 +8,25 @@ export default function Footer() {
         {/* Top row: Newsletter (left) + Actions (right) */}
         <div className="grid md:grid-cols-2 gap-8 items-start">
           <div>
-            <NewsletterSection variant="compact" />
+            <NewsletterCompact />
           </div>
+
           <div className="rounded-2xl border border-slate-200 p-6 bg-white">
             <h4 className="text-lg font-semibold text-slate-900">Work with us</h4>
             <p className="mt-2 text-sm text-slate-600">
               Collaborate on youth-led research or bring our team into your policy work.
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link href="/contact?type=submit-paper" className="inline-flex items-center rounded-xl bg-[#3498DB] text-white px-4 py-2 font-medium hover:opacity-90">
+              <Link
+                href="/contact?type=submit-paper"
+                className="inline-flex items-center rounded-xl bg-[#3498DB] text-white px-4 py-2 font-medium hover:opacity-90"
+              >
                 Submit a research paper
               </Link>
-              <Link href="/contact?type=partner" className="inline-flex items-center rounded-xl border border-slate-300 px-4 py-2 font-medium hover:border-slate-400">
+              <Link
+                href="/contact?type=partner"
+                className="inline-flex items-center rounded-xl border border-slate-300 px-4 py-2 font-medium hover:border-slate-400"
+              >
                 Partner with us
               </Link>
             </div>
