@@ -1,6 +1,6 @@
+// app/(site)/page.tsx
 import Link from "next/link";
 import GradientHero from "@/components/GradientHero";
-import NewsletterSection from "@/components/NewsletterSection";
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
@@ -9,7 +9,11 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     </h2>
   );
 }
-function Rule() { return <div className="h-px bg-slate-200" />; }
+
+function Rule() {
+  return <div className="h-px bg-slate-200" />;
+}
+
 function Tag({ text }: { text: string }) {
   return (
     <span className="inline-block text-xs font-medium px-2 py-1 rounded-full bg-blue-50 text-[#3498DB]">
@@ -19,30 +23,49 @@ function Tag({ text }: { text: string }) {
 }
 
 export default function HomePage() {
+  // Featured EXACTLY 3: 1 Research + 2 Blogs
   const featured = [
-    { kind: "Research", title: "Policy pathways for equitable AI in schools", href: "/research" },
-    { kind: "Blog", title: "Women’s Day March changed the game", href: "/blog" },
-    { kind: "Blog", title: "France prepares for Election Day", href: "/blog" },
+    {
+      kind: "Research",
+      title: "Policy pathways for equitable AI in schools",
+      href: "/research",
+    },
+    {
+      kind: "Blog",
+      title: "Women’s Day March changed the game",
+      href: "/blog",
+    },
+    {
+      kind: "Blog",
+      title: "France prepares for Election Day",
+      href: "/blog",
+    },
   ];
-  const research = Array.from({ length: 6 }).map((_, i) => ({
-    title: `Paper Title #${i + 1}`, href: "/research"
+
+  // Grids limited to 3 each
+  const research = Array.from({ length: 3 }).map((_, i) => ({
+    title: `Paper Title #${i + 1}`,
+    href: "/research",
   }));
-  const blogs = Array.from({ length: 6 }).map((_, i) => ({
-    title: `Post Title #${i + 1}`, href: "/blog"
+
+  const blogs = Array.from({ length: 3 }).map((_, i) => ({
+    title: `Post Title #${i + 1}`,
+    href: "/blog",
   }));
 
   return (
     <>
-      {/* INITIUM + divider + tagline (no top ribbon anymore) */}
+      {/* INITIUM + vertical divider + tagline (no separate top ribbon) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10">
         <div className="grid md:grid-cols-12 gap-8 items-end">
+          {/* Left: INITIUM. */}
           <div className="md:col-span-7">
             <h1 className="text-[12vw] md:text-[7rem] leading-[0.85] font-black tracking-tight text-slate-900 select-none">
               INITIUM<span className="text-[#3498DB]">.</span>
             </h1>
           </div>
 
-          {/* Vertical divider (Wix proportion) */}
+          {/* Middle: vertical divider (Wix proportion, hidden on mobile) */}
           <div className="hidden md:flex md:col-span-1 items-end">
             <div
               className="w-[2px] bg-[#3498DB]"
@@ -51,6 +74,7 @@ export default function HomePage() {
             />
           </div>
 
+          {/* Right: tagline */}
           <div className="md:col-span-4 flex md:justify-start">
             <div className="md:pb-2">
               <div className="text-2xl md:text-3xl font-semibold tracking-tight text-slate-900">
@@ -60,14 +84,14 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Space between INITIUM and the gradient banner (per your request) */}
+        {/* Breathing room between header and gradient */}
         <div className="mt-6" />
 
-        {/* Gradient hero WITH the ribbon inside */}
+        {/* Gradient hero with embedded ribbon (only place the ribbon appears) */}
         <GradientHero />
       </section>
 
-      {/* Featured */}
+      {/* Featured: mirrors Wix grid, simple cards */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
         <SectionHeading>Featured</SectionHeading>
         <div className="mt-8 grid md:grid-cols-3 gap-10">
@@ -78,54 +102,81 @@ export default function HomePage() {
                 {item.title}
               </h3>
               <Rule />
-              <div className="mt-3"><Tag text={item.kind} /></div>
+              <div className="mt-3">
+                <Tag text={item.kind} />
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Research Papers */}
+      {/* Research Papers (3) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12">
         <div className="flex items-end justify-between">
           <SectionHeading>Research Papers</SectionHeading>
-          <Link href="/research" className="px-4 py-2 rounded-xl border border-slate-300 hover:border-slate-400">View all</Link>
+          <Link
+            href="/research"
+            className="px-4 py-2 rounded-xl border border-slate-300 hover:border-slate-400"
+          >
+            View all
+          </Link>
         </div>
         <div className="mt-8 grid md:grid-cols-3 gap-10">
           {research.map((r, i) => (
-            <Link key={i} href={r.href} className="group rounded-2xl border border-slate-200 bg-white hover:shadow-sm transition">
+            <Link
+              key={i}
+              href={r.href}
+              className="group rounded-2xl border border-slate-200 bg-white hover:shadow-sm transition"
+            >
               <div className="aspect-[16/10] bg-slate-100 rounded-t-2xl" />
               <div className="p-5">
-                <div className="mb-2"><Tag text="Research" /></div>
+                <div className="mb-2">
+                  <Tag text="Research" />
+                </div>
                 <h3 className="text-base font-semibold">{r.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">Short abstract snippet goes here.</p>
+                <p className="mt-2 text-sm text-slate-600">
+                  Short abstract snippet goes here.
+                </p>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Blogs */}
+      {/* Blogs (3) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
         <div className="flex items-end justify-between">
           <SectionHeading>Blogs</SectionHeading>
-          <Link href="/blog" className="px-4 py-2 rounded-xl border border-slate-300 hover:border-slate-400">View all</Link>
+          <Link
+            href="/blog"
+            className="px-4 py-2 rounded-xl border border-slate-300 hover:border-slate-400"
+          >
+            View all
+          </Link>
         </div>
         <div className="mt-8 grid md:grid-cols-3 gap-10">
           {blogs.map((b, i) => (
-            <Link key={i} href={b.href} className="group rounded-2xl border border-slate-200 bg-white hover:shadow-sm transition">
+            <Link
+              key={i}
+              href={b.href}
+              className="group rounded-2xl border border-slate-200 bg-white hover:shadow-sm transition"
+            >
               <div className="aspect-[16/10] bg-slate-100 rounded-t-2xl" />
               <div className="p-5">
-                <div className="mb-2"><Tag text="Blog" /></div>
+                <div className="mb-2">
+                  <Tag text="Blog" />
+                </div>
                 <h3 className="text-base font-semibold">{b.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">Brief excerpt goes here.</p>
+                <p className="mt-2 text-sm text-slate-600">
+                  Brief excerpt goes here.
+                </p>
               </div>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Newsletter at the end */}
-      <NewsletterSection />
+      {/* No newsletter here; it's embedded in the footer (left column) */}
     </>
   );
 }
