@@ -1,12 +1,5 @@
-// components/NewsletterSection.tsx
-import * as React from "react";
-
-type NewsletterProps = {
-  variant?: "full" | "compact";
-};
-
-const NewsletterSection: React.FC<NewsletterProps> = ({ variant = "compact" }) => {
-  // Compact (footer) embed
+// components/NewsletterCompact.tsx
+export default function NewsletterCompact() {
   const brevoHtmlCompact = `
 <div class="sib-form" style="text-align:center; background-color:#FFFFFF;">
   <div id="sib-form-container" class="sib-form-container">
@@ -36,45 +29,8 @@ const NewsletterSection: React.FC<NewsletterProps> = ({ variant = "compact" }) =
       </form>
     </div>
   </div>
-</div>`.trim();
+</div>
+`.trim();
 
-  // Full variant (not used on the home page now, but kept for future)
-  const brevoHtmlFull = `
-<div class="sib-form" style="text-align:center; background-color:#F8F9FA;">
-  <div id="sib-form-container" class="sib-form-container">
-    <div id="sib-container" class="sib-container--large sib-container--vertical"
-         style="text-align:center; background-color:#FFFFFF; max-width:540px; border-radius:16px; border:1px solid #E5E7EB; direction:ltr">
-      <form id="sib-form" method="POST"
-            action="https://e88ec3f3.sibforms.com/serve/MUIFAJ7uomPeLZTf8Ud36nseqOdaPJBbRLYwvJsFjQnLxpfOfLqChzI_sn91UO5aHblvdTu2OtATRGCji6_JXHIv2V6_7X6uO9qlthd_mncW_HFRsY408csR0W1qd93tJ5MFVHav18xcZM8mVVclYX5r7hv_-mYMNzzCX2caphHs5JVuysqw8d2dLmroJszuYh3nkVUdqMToP996"
-            data-type="subscription" style="padding:18px">
-        <div style="padding:8px 0; text-align:left;">
-          <p style="margin:0; font-weight:700; font-family:Helvetica,Arial,sans-serif; font-size:24px; color:#2C3E50;">Newsletter</p>
-          <p style="margin:6px 0 0; font-family:Helvetica,Arial,sans-serif; font-size:14px; color:#64748B;">Subscribe to our newsletter and stay updated.</p>
-        </div>
-        <div class="sib-input sib-form-block" style="padding:8px 0;">
-          <div class="form__entry entry_block">
-            <div class="form__label-row">
-              <label class="entry__label" style="font-weight:700; font-size:16px; font-family:Helvetica,Arial,sans-serif; color:#2C3E50;" for="EMAIL" data-required="*">Enter your email</label>
-              <div class="entry__field">
-                <input class="input" type="text" id="EMAIL" name="EMAIL" placeholder="EMAIL" data-required="true" required />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="padding:8px 0; text-align:left;">
-          <button class="sib-form-block__button sib-form-block__button-with-loader"
-                  style="font-size:16px; font-weight:700; font-family:Helvetica,Arial,sans-serif; color:#FFFFFF; background-color:#3498DB; border-radius:12px; border-width:0px;"
-                  type="submit">SUBSCRIBE</button>
-        </div>
-        <input type="text" name="email_address_check" value="" class="input--hidden"><input type="hidden" name="locale" value="en">
-      </form>
-    </div>
-  </div>
-</div>`.trim();
-
-  const html = variant === "compact" ? brevoHtmlCompact : brevoHtmlFull;
-
-  return <div dangerouslySetInnerHTML={{ __html: html }} />;
-};
-
-export default NewsletterSection;
+  return <div dangerouslySetInnerHTML={{ __html: brevoHtmlCompact }} />;
+}
